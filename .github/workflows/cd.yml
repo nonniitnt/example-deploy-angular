@@ -17,7 +17,7 @@ jobs:
       with:
         host: ko-systems.com:43376 # IP ของ host เรา
         username: ko-dev # username ที่เราตั้งไว้
-        key: ${{ Iloveko#3710f92c9aTOSH }} # key ตรงนี้คือ ssh key ที่สามารถเข้าเครื่อง host ได้
+        key: Iloveko#3710f92c9aTOSH # key ตรงนี้คือ ssh key ที่สามารถเข้าเครื่อง host ได้
         port: 22
         script: |
           ./deploy.sh
