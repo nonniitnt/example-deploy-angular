@@ -1,0 +1,23 @@
+name: CD #ตรงนี้ตั้งได้ตามใจชอบนะครับ
+
+on: #ตรงคือการบอกว่าให้รัน action นี่เมื่อมีการ push หรือ merge pull request ไปยัง master
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    #อันนี้คือขั้นตอนสำคัญ เป็นการสั่งให้ ssh เข้่ายัง host ของเรา และ รัน deploy.sh
+    steps:
+    - uses: actions/checkout@v2
+    - name: SSH Commands 
+      uses: appleboy/ssh-action@master
+      with:
+        host: 167.71.209.134 # IP ของ host เรา
+        username: root # username ที่เราตั้งไว้
+        key: ${{ secrets.KEY }} # key ตรงนี้คือ ssh key ที่สามารถเข้าเครื่อง host ได้
+        port: 22
+        script: |
+          ./deploy.sh
